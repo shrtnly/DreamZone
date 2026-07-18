@@ -152,16 +152,16 @@ function App() {
 
   const mapLocations = [
     {
-      name: "The Bay Icon Hotel & Resort",
-      query: "The Bay Icon Cox's Bazar",
-      link: "https://maps.app.goo.gl/UMi6pLoAyGttm85o8",
-      desc: "Premium luxury waterfront hotel & resort along Cox's Bazar Marine Drive."
-    },
-    {
       name: "DHAKA WESTERN VALLEY",
       query: "Dhaka Western Valley",
       link: "https://maps.app.goo.gl/3TFvoVH69AhLMuYMA",
       desc: "Exclusive planned plotted residential neighborhood with modern infrastructure."
+    },
+    {
+      name: "The Bay Icon Hotel & Resort",
+      query: "The Bay Icon Cox's Bazar",
+      link: "https://maps.app.goo.gl/3htzPPkRE5udY5kD9",
+      desc: "Premium luxury waterfront hotel & resort along Cox's Bazar Marine Drive."
     },
     {
       name: "Pushpodhara Eco-City",
