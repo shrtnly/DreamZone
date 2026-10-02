@@ -23,7 +23,9 @@ import {
   ChevronDown,
   User,
   Plus,
-  Info
+  Info,
+  Sparkles,
+  ShieldCheck
 } from 'lucide-react'
 import './App.css'
 
@@ -143,7 +145,6 @@ function App() {
   const [showDevConsole, setShowDevConsole] = useState(false)
   const [activeDevTab, setActiveDevTab] = useState('logs') // logs, inquiries
   const [headerScrolled, setHeaderScrolled] = useState(false)
-  const [currentHeroIdx, setCurrentHeroIdx] = useState(0)
   const [selectedTypeFilter, setSelectedTypeFilter] = useState('All')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [mobileProjectOpen, setMobileProjectOpen] = useState(false)
@@ -183,12 +184,6 @@ function App() {
     }
   ]
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentHeroIdx(prev => (prev + 1) % 3)
-    }, 8500)
-    return () => clearInterval(timer)
-  }, [currentHeroIdx])
   const [selectedProperty, setSelectedProperty] = useState(null)
   const [showAddPropertyModal, setShowAddPropertyModal] = useState(false)
   
@@ -814,58 +809,126 @@ function App() {
         </a>
       </header>
 
-      {/* HERO SECTION */}
+      {/* HERO SECTION - MODERN LUXURY REDESIGN WITHOUT IMAGES */}
       <section className="hero-section">
-        {/* Background Slideshow */}
-        <div className="hero-slideshow-container">
-          {[
-            { img: '/Hero-1.jpg' },
-            { img: '/Hero-2.png' },
-            { img: '/Hero-3.jpeg' }
-          ].map((slide, idx) => {
-            let slideStatus = '';
-            if (currentHeroIdx === idx) {
-              slideStatus = 'active';
-            } else if ((currentHeroIdx + 1) % 3 === idx) {
-              slideStatus = 'next';
-            } else {
-              slideStatus = 'prev';
-            }
-            return (
-              <div key={idx} className={`hero-slide ${slideStatus}`}>
-                <div 
-                  className="hero-slide-bg" 
-                  style={{ backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 40%), url('${slide.img}')` }} 
-                />
-              </div>
-            );
-          })}
-        </div>
+        <div className="hero-ambient-glow hero-glow-1" />
+        <div className="hero-ambient-glow hero-glow-2" />
+        <div className="hero-ambient-glow hero-glow-3" />
+        <div className="hero-grid-pattern" />
 
-        {/* Book an Appointment Button */}
-        <a 
-          href="#contact" 
-          className="hero-appointment-btn"
-          onClick={(e) => { 
-            e.preventDefault(); 
-            document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); 
-          }}
-        >
-          Book an Appointment
-        </a>
+        <div className="hero-content-wrapper">
+          <div className="hero-badge">
+            <Sparkles size={14} className="hero-badge-icon" />
+            <span>PREMIER ARCHITECTURAL & PLOTTED DEVELOPMENTS</span>
+          </div>
 
-        {/* Modern Vertical Slide Indicators Navigation */}
-        <div className="hero-slide-nav">
-          {[0, 1, 2].map((idx) => (
-            <button
-              key={idx}
-              className={`hero-nav-dot ${currentHeroIdx === idx ? 'active' : ''}`}
-              onClick={() => setCurrentHeroIdx(idx)}
-              aria-label={`Go to slide ${idx + 1}`}
+          <h1 className="hero-main-title">
+            Discover Iconic Living & <br />
+            <span className="hero-gradient-text">Timeless Land Investments</span>
+          </h1>
+
+          <p className="hero-description">
+            Experience bespoke planned townships, sustainable eco-communities, and architectural 
+            condominiums designed for lasting security, luxury living, and high capital growth.
+          </p>
+
+          <div className="hero-cta-group">
+            <a 
+              href="#contact" 
+              className="hero-primary-btn"
+              onClick={(e) => { 
+                e.preventDefault(); 
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); 
+              }}
             >
-              <span className="dot-center" />
+              <Calendar size={18} />
+              <span>Book an Appointment</span>
+              <ChevronRight size={18} className="btn-arrow" />
+            </a>
+
+            <button 
+              className="hero-secondary-btn"
+              onClick={() => { 
+                document.getElementById('development')?.scrollIntoView({ behavior: 'smooth' }); 
+              }}
+            >
+              <Building size={18} />
+              <span>Explore Projects</span>
             </button>
-          ))}
+
+            <a href="tel:+8801815311232" className="hero-hotline-btn">
+              <Phone size={15} />
+              <span>+88 01815 311 232</span>
+            </a>
+          </div>
+
+          {/* Quick Project Showcase Pills */}
+          <div className="hero-project-pills">
+            <span className="pills-label">Featured Townships:</span>
+            <div className="pills-list">
+              <button 
+                className="project-pill"
+                onClick={() => handleProjectSelect('Dhaka Western Valley')}
+              >
+                <MapPin size={13} className="pill-pin" /> Dhaka Western Valley
+              </button>
+              <button 
+                className="project-pill"
+                onClick={() => handleProjectSelect('The Bay Icon')}
+              >
+                <MapPin size={13} className="pill-pin" /> The Bay Icon
+              </button>
+              <button 
+                className="project-pill"
+                onClick={() => handleProjectSelect('Pushpo Condominium City')}
+              >
+                <MapPin size={13} className="pill-pin" /> Pushpo Condominium City
+              </button>
+            </div>
+          </div>
+
+          {/* Key Stat Cards Strip */}
+          <div className="hero-stats-grid">
+            <div className="hero-stat-card">
+              <div className="stat-card-icon">
+                <CheckCircle2 size={22} />
+              </div>
+              <div className="stat-card-info">
+                <span className="stat-number">100%</span>
+                <span className="stat-text">Verified Title Ownership</span>
+              </div>
+            </div>
+
+            <div className="hero-stat-card">
+              <div className="stat-card-icon">
+                <Building size={22} />
+              </div>
+              <div className="stat-card-info">
+                <span className="stat-number">5+</span>
+                <span className="stat-text">Mega Planned Townships</span>
+              </div>
+            </div>
+
+            <div className="hero-stat-card">
+              <div className="stat-card-icon">
+                <Star size={22} />
+              </div>
+              <div className="stat-card-info">
+                <span className="stat-number">2,500+</span>
+                <span className="stat-text">Satisfied Investors</span>
+              </div>
+            </div>
+
+            <div className="hero-stat-card">
+              <div className="stat-card-icon">
+                <ShieldCheck size={22} />
+              </div>
+              <div className="stat-card-info">
+                <span className="stat-number">A+ Grade</span>
+                <span className="stat-text">Infrastructure Standards</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
